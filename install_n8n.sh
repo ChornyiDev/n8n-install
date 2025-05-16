@@ -13,6 +13,7 @@ INSTALL_DIR="$N8N_HOME/.n8n"
 N8N_HOST="127.0.0.1"
 N8N_PORT=5678
 N8N_PROTOCOL="http"
+N8N_SECURE_COOKIE="false"
 
 # ======================
 # === Перевірки та кольори ===
@@ -99,6 +100,7 @@ cat > "$INSTALL_DIR/.env" << EOL
 N8N_HOST=$N8N_HOST
 N8N_PORT=$N8N_PORT
 N8N_PROTOCOL=$N8N_PROTOCOL
+N8N_SECURE_COOKIE=$N8N_SECURE_COOKIE
 
 # Add more environment variables here if needed
 EOL
