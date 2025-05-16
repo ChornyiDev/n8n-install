@@ -113,8 +113,12 @@ sudo bash update-n8n.sh
 
 ```
 ~/n8n-install/
-├── install_n8n.sh     # головний скрипт
-└── README.md          # інструкція
+├── install-n8n.sh     # головний скрипт встановлення
+├── update-n8n.sh      # скрипт для оновлення
+├── example.env        # приклад конфігурації
+├── README.md          # інструкція
+└── nginx/            
+    └── n8n.conf      # початкова конфігурація для nginx
 ```
 
 ---
