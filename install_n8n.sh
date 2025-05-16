@@ -46,7 +46,7 @@ mkdir -p "$INSTALL_DIR"
 chown -R $N8N_USER:$N8N_USER "$INSTALL_DIR"
 
 # ======================
-# === Node.js 22 ===
+# === Node.js ===
 # ======================
 
 if ! command -v node &> /dev/null; then
@@ -61,16 +61,16 @@ else
 fi
 
 if [[ "$INSTALL_NODE" = true ]]; then
-    echo -e "${GREEN}Installing Node.js 22.x...${NC}"
-    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+    echo -e "${GREEN}Installing Node.js 18.x...${NC}"
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
     apt-get install -y nodejs
 else
     echo -e "${GREEN}Node.js version $(node -v) is already suitable (v18 to v22).${NC}"
 fi
 
 NODE_VERSION=$(node -v)
-if [[ $NODE_VERSION != v22* ]]; then
-    echo -e "${YELLOW}Node.js 22.x is required. Current: $NODE_VERSION${NC}"
+if [[ $(echo "$NODE_VERSION" | sed 's/v\([0-9]*\).*/\1/') -lt 18 || $(echo "$NODE_VERSION" | sed 's/v\([0-9]*\).*/\1/') -gt 22 ]]; then
+    echo -e "${YELLOW}Node.js version must be between 18.x and 22.x. Current: $NODE_VERSION${NC}"
     exit 1
 else
     echo -e "${GREEN}Node.js $NODE_VERSION installed.${NC}"
