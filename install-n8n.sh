@@ -23,6 +23,9 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
+# Отримати зовнішню IP-адресу сервера
+SERVER_IP=$(hostname -I | awk '{print $1}')
+
 # Перевірка root прав
 if [[ "$EUID" -ne 0 ]]; then
     echo -e "${YELLOW}This script must be run as root.${NC}"
@@ -160,6 +163,6 @@ echo
 echo -e "${GREEN}📦 Перегляд логів у реальному часі:${NC}"
 echo -e "  ${YELLOW}sudo journalctl -u n8n -f${NC}"
 echo
-echo -e "${GREEN}🎉 Готово! n8n працює на http://$N8N_HOST:$N8N_PORT${NC}"
+echo -e "${GREEN}🎉 Готово! n8n працює на http://$SERVER_IP:$N8N_PORT${NC}"
 echo -e "${GREEN}Node.js версія: $(node -v) | n8n версія: $(n8n --version)${NC}"
 
