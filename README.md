@@ -40,7 +40,7 @@ sudo bash install-n8n.sh
 * Файл конфігурації:
   `/home/n8n/.n8n/.env`
 * Файл системної служби:
-  `/home/n8n/.n8n/.env`
+  `/etc/systemd/system/n8n.service`
 
 ---
 
