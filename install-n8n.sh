@@ -1,22 +1,22 @@
 #!/bin/bash
 
 # ======================
-# === Конфігурація ====
+# === Configuration ====
 # ======================
 
-# N8N системний користувач
+# N8N system user
 N8N_USER="n8n"
 N8N_HOME="/home/$N8N_USER"
 INSTALL_DIR="$N8N_HOME/.n8n"
 
-# 🌐 N8N сервер
+# 🌐 N8N server
 N8N_HOST="127.0.0.1"
 N8N_PORT=5678
 N8N_PROTOCOL="http"
 N8N_SECURE_COOKIE="false"
 
 # ======================
-# === Перевірки та кольори ===
+# === Checks and colors ===
 # ======================
 
 GREEN='\033[0;32m'

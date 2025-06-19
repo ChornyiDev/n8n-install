@@ -2,23 +2,23 @@
 
 echo "========== $(date '+%Y-%m-%d %H:%M:%S') =========="
 
-# Отримуємо поточну версію
+# Get current version
 OLD_VERSION=$(n8n --version 2>/dev/null)
 
-# Оновлення
+# Update
 npm update -g n8n >/dev/null 2>&1
 
-# Отримуємо нову версію
+# Get new version
 NEW_VERSION=$(n8n --version 2>/dev/null)
 
-# Якщо версія змінилася — перезапускаємо
+# If version changed - restart
 if [[ "$OLD_VERSION" != "$NEW_VERSION" ]]; then
-  echo "🔄 Версія змінилась: $OLD_VERSION → $NEW_VERSION"
-  echo "🔑 Перезапускаємо службу n8n..."
+  echo "🔄 Version changed: $OLD_VERSION → $NEW_VERSION"
+  echo "🔑 Restarting n8n service..."
   systemctl restart n8n 2>&1
-  echo "✅ n8n оновлено до версії $NEW_VERSION"
+  echo "✅ n8n updated to version $NEW_VERSION"
 else
-  echo "ℹ️ n8n вже останньої версії: $NEW_VERSION"
+  echo "ℹ️ n8n is already at latest version: $NEW_VERSION"
 fi
 
 echo "============================================="

@@ -1,128 +1,128 @@
 # 🛠️ n8n Secure Installer
 
-Цей скрипт автоматизує встановлення [n8n](https://n8n.io) як **systemd-служби** на Linux-сервері, із запуском від **окремого системного користувача `n8n`** для підвищеної безпеки.
+This script automates the installation of [n8n](https://n8n.io) as a **systemd service** on a Linux server, running under a **dedicated system user `n8n`** for enhanced security.
 
 ---
 
-## ⚙️ Що робить скрипт
+## ⚙️ What the Script Does
 
-* Перевіряє наявність Node.js (допустимі версії: **v18–v22**)
-* Встановлює Node.js 18.x, якщо потрібно
-* Встановлює `n8n` глобально через `npm`
-* Створює системного користувача `n8n`
-* Генерує `.env` файл у `/home/n8n/.n8n/.env`
-* Створює systemd-службу `n8n.service`
-* Запускає службу та вмикає автозапуск при старті системи
+* Checks for Node.js (supported versions: **v18–v22**)
+* Installs Node.js 18.x if needed
+* Installs `n8n` globally via `npm`
+* Creates system user `n8n`
+* Generates `.env` file in `/home/n8n/.n8n/.env`
+* Creates systemd service `n8n.service`
+* Starts the service and enables autostart on system boot
 
 ---
 
-## 📦 Як використати
+## 📦 How to Use
 
 ```bash
-# 1. Клонувати репозиторій
+# 1. Clone the repository
 git clone https://github.com/ChornyiDev/n8n-install.git ~/n8n-install
 
-# 2. Перейти в директорію
+# 2. Change directory
 cd ~/n8n-install
 
-# 3. Запустити скрипт як root або через sudo
+# 3. Run script as root or via sudo
 sudo bash install-n8n.sh
 ```
 
-> ⚠️ Скрипт **потрібно запускати з root-правами**, оскільки він створює користувача, встановлює пакети та налаштовує службу.
+> ⚠️ The script **must be run with root privileges** as it creates a user, installs packages, and configures the service.
 
 ---
 
-## ✅ Після встановлення
+## ✅ After Installation
 
-* n8n буде запущено як **системна служба**
-* Працює під користувачем `n8n`
-* Файл конфігурації:
+* n8n will be running as a **system service**
+* Running under the `n8n` user
+* Configuration file:
   `/home/n8n/.n8n/.env`
-* Файл системної служби:
+* System service file:
   `/home/n8n/.n8n/.env`
 
 ---
 
-## 🔧 Команди для керування службою
+## 🔧 Service Management Commands
 
 ```bash
-# Перевірити статус
+# Check status
 sudo systemctl status n8n
 
-# Перезапустити службу
+# Restart service
 sudo systemctl restart n8n
 
-# Зупинити службу
+# Stop service
 sudo systemctl stop n8n
 
-# Увімкнути автозапуск
+# Enable autostart
 sudo systemctl enable n8n
 
-# Вимкнути автозапуск
+# Disable autostart
 sudo systemctl disable n8n
 
-# Перегляд логів у реальному часі
+# View logs in real-time
 sudo journalctl -u n8n -f
 
-# Змінити конфігурацію
+# Edit configuration
 nano /home/n8n/.n8n/.env
 ```
 
 ---
 
-## 🌐 Доступ
+## 🌐 Access
 
-Після запуску n8n буде доступний за адресою:
+After startup, n8n will be available at:
 
 ```
 http://your-ip:5678
 ```
 
-> Якщо ви використовуєте reverse proxy або змінюєте конфігурацію — оновіть `.env`.
+> If you're using a reverse proxy or changing the configuration — update the `.env` file.
 
 ---
 
-## 📅 Оновлення n8n
+## 📅 Updating n8n
 
-У репозиторії є окремий скрипт [`update-n8n.sh`](./update-n8n.sh), що:
+The repository includes a separate script [`update-n8n.sh`](./update-n8n.sh) that:
 
-- перевіряє поточну версію n8n
-- оновлює через `npm`
-- перезапускає службу тільки якщо версія змінилась
+- checks the current n8n version
+- updates via `npm`
+- restarts the service only if the version has changed
 
-### 🔧 Ручний запуск
+### 🔧 Manual Update
 
 ```bash
 sudo bash update-n8n.sh
 ```
 
-### 🕛 Автооновлення (optionally)
+### 🕛 Auto-update (optionally)
 
-Щоб налаштувати автооновлення кожної неділі о 12:00 через Crontab:
+To set up automatic updates every Sunday at 12:00 via Crontab:
 
 ```bash
 (crontab -l 2>/dev/null; echo "0 12 * * 0 /full/path/to/update-n8n.sh 2>> /var/log/n8n-update.log") | crontab -
 ```
 
-> Увага: лог записує тільки помилки (stderr) у `/var/log/n8n-update.log`
+> Note: The log only records errors (stderr) in `/var/log/n8n-update.log`
 
 ---
 
-## 📁 Структура
+## 📁 Structure
 
 ```
 ~/n8n-install/
-├── install-n8n.sh     # головний скрипт встановлення
-├── update-n8n.sh      # скрипт для оновлення
-├── example.env        # приклад конфігурації
-├── README.md          # інструкція
+├── install-n8n.sh     # main installation script
+├── update-n8n.sh      # update script
+├── example.env        # configuration example
+├── README.md          # documentation
 └── nginx/            
-    └── n8n.conf      # початкова конфігурація для nginx
+    └── n8n.conf      # initial nginx configuration
 ```
 
 ---
 
-## 📜 Ліцензія
+## 📜 License
 
-MIT — використовуй, змінюй, поширюй.
+MIT — use, modify, distribute.
