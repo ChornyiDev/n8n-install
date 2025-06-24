@@ -65,8 +65,8 @@ else
 fi
 
 if [[ "$INSTALL_NODE" = true ]]; then
-    echo -e "${GREEN}Installing Node.js 18.x...${NC}"
-    curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+    echo -e "${GREEN}Installing Node.js 21.x...${NC}"
+    curl -fsSL https://deb.nodesource.com/setup_21.x | bash -
     apt-get install -y nodejs
 else
     echo -e "${GREEN}Node.js version $(node -v) is already suitable (v18 to v22).${NC}"

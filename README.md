@@ -7,7 +7,7 @@ This script automates the installation of [n8n](https://n8n.io) as a **systemd s
 ## ⚙️ What the Script Does
 
 * Checks for Node.js (supported versions: **v18–v22**)
-* Installs Node.js 18.x if needed
+* Installs Node.js 21.x if needed
 * Installs `n8n` globally via `npm`
 * Creates system user `n8n`
 * Generates `.env` file in `/home/n8n/.n8n/.env`
